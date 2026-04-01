@@ -1,0 +1,153 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\title{DS-CV\&IC project of Group26}
+\author{Evan F \& Kundai M}
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+
+Deliver at: \href{https://maat.eemcs.utwente.nl/team/239340}{maat.eemcs.utwente.nl}
+
+\section{Motivation}
+\textcolor{gray}{Describe why your project with its questions and contributions is relevant and important. If you use literature, please provide references. 300 words max}
+
+\begin{itemize}
+    \item Explain why automated disaster image classification is useful for crisis response and resource allocation.
+    \item State that manual labeling is slow and error-prone when many images arrive quickly.
+    \item Mention that transfer learning reduces training cost when labeled data is limited.
+    \item Describe your contribution: a ResNet34-based pipeline with cross-validation and hold-out testing.
+    \item Briefly note expected impact: faster and more consistent situational awareness.
+\end{itemize}
+
+\section{(Business/Research) questions}
+\textcolor{gray}{Specify the questions that your project has answered. Use the SMART criteria. 300 words max}
+
+\begin{itemize}
+    \item Main question: Can transfer learning classify 12 disaster-related image classes with reliable performance?
+    \item Sub-question: Which metric is most informative for this imbalanced multi-class problem (weighted F1 vs accuracy)?
+    \item Sub-question: How stable is model performance across folds?
+    \item Sub-question: Does hold-out test performance align with cross-validation estimates?
+    \item Write each question in SMART form: specific task, measurable metric, feasible scope, course-relevant, and deadline-bound.
+\end{itemize}
+
+\section{Source data}
+\textcolor{gray}{What data quality issues did you consider that could potentially hamper your project (if any), what actions did you do to detect them (if any), what data quality issues did you find (if any), and what did you do about them? 500 words max}
+
+\begin{itemize}
+    \item Describe dataset source, number of classes, and examples of class names.
+    \item Report class distribution and show that classes are imbalanced.
+    \item Mention potential quality issues: mislabeled images, duplicate images, low-resolution/noisy images, and class overlap.
+    \item Explain detection actions: visual inspection, class count plots, and stratified splitting checks.
+    \item Explain mitigation: weighted sampler, class-weighted loss, and stratified train/val/test splits.
+    \item State remaining risks that were not fully solvable (for example hidden label noise).
+\end{itemize}
+
+\section{Method}
+\textcolor{gray}{Describe the main steps in your project with associated argumentation why they are relevant and important. Include methodically relevant details such as evaluation metrics and other methodically important parameters. Validation Method: One important aspect of modelling is validation. Especially for topics, DM, CV\&IC, GIS, and IENLP explicitly mention which validation method is used.
+CV\&IC: Explicitly describe your approach to representing images and provide reasoning for your chosen representation. Include in the general question on Method explicitly which ML methods you have compared and how you compared them including which metrics you used for the comparison. 500 words max}
+
+\begin{itemize}
+    \item Summarize workflow: loading data, preprocessing, splitting, model setup, training, validation, and testing.
+    \item Explain image representation: RGB tensors resized and cropped to 224x224, normalized with ImageNet statistics.
+    \item Explain augmentation choices for training: random horizontal flip and small rotations.
+    \item Describe model choice: pretrained ResNet34 with replaced final fully connected layer for 12 classes.
+    \item Describe optimization setup: SGD, learning-rate scheduler, weighted cross-entropy, batch size, and epoch counts.
+    \item Describe validation method explicitly: Stratified 5-fold cross-validation on training data plus final hold-out test.
+    \item Describe comparison approach: compare fold-wise weighted F1, accuracy, precision, recall, and confusion matrices.
+    \item Justify weighted F1 as key metric due to class imbalance.
+\end{itemize}
+
+\section{Results}
+\textcolor{gray}{Provide tables, graphs, and visualizations for your results with associated descriptions how to interpret them and which detailed conclusions you draw from them (text in the tables, graphs, and visualizations or in their captions do not count for the word limit) 500 words max}
+
+\begin{itemize}
+    \item Report mean and variability of cross-validation weighted F1 and accuracy.
+    \item Add learning-curve plots (train/validation loss and accuracy) and explain overfitting signs or stability.
+    \item Add fold-wise F1 plot and interpret consistency across folds.
+    \item Include confusion matrices (fold-level and final test) and discuss frequent confusions between classes.
+    \item Report hold-out test metrics: accuracy, precision, recall, weighted F1, and class-wise report.
+    \item Conclude whether test results are close to CV estimates and what this means for robustness.
+\end{itemize}
+
+\section{Reliability of results}
+\textcolor{gray}{Describe limitations and explain how reliable your results and conclusions can be trusted to be. Describe any reliability-related actions (if any). 300 words max}
+
+\begin{itemize}
+    \item Discuss reliability strengths: stratified splits, k-fold validation, and separate hold-out test set.
+    \item Discuss limitations: limited dataset size, possible label noise, and domain shift risk.
+    \item Mention randomness sources: initialization, data loader sampling, augmentation effects.
+    \item State reliability actions: fixed random seed, repeated evaluation across folds, and metric triangulation.
+    \item Clarify that conclusions are reliable within similar data conditions, but external deployment needs extra validation.
+\end{itemize}
+
+\section{Technical depth}
+\textcolor{gray}{What methods/techniques did you apply in the project that go beyond the primary topic and where did you learn about them (other topic, literature, other course, etc.) 300 words max}
+
+\begin{itemize}
+    \item Highlight transfer learning with pretrained CNNs as core advanced technique.
+    \item Highlight imbalance handling using weighted sampler and class-weighted loss.
+    \item Highlight multi-level evaluation design: fold metrics, learning curves, confusion matrices, and hold-out verification.
+    \item Mention practical deep learning choices: scheduler tuning, augmentation policy, and checkpointing best model.
+    \item State where techniques were learned (course material, PyTorch tutorial, and relevant literature).
+\end{itemize}
+
+\section{Conclusions \& recommendations}
+\textcolor{gray}{Describe the target stakeholder, the main conclusions you drew from your results, the recommendations for this target stakeholder, and future research. 300 words max}
+
+\begin{itemize}
+    \item Identify stakeholders: emergency management teams, monitoring centers, or public safety analysts.
+    \item Conclude whether the model is suitable for decision support and where it performs best/worst.
+    \item Recommend deployment as an assistive tool, not a fully autonomous decision-maker.
+    \item Recommend collecting more balanced data for weak classes and adding label-quality checks.
+    \item Suggest future work: stronger backbones, ensembling, calibration, and external dataset validation.
+\end{itemize}
+
+\section{Reflection}
+\textcolor{gray}{How did the project’s challenges get addressed, how relevant were the course’s skills and techniques for this real-world project, and what additional knowledge and skills may have been beneficial? For transparency, did you use ChatGPT and if so, for what purpose(s)? 300 words max}
+
+\begin{itemize}
+    \item Describe key project challenges: imbalance, multi-class confusion, and balancing accuracy with generalization.
+    \item Explain how course skills helped: preprocessing, model validation, metric interpretation, and result communication.
+    \item Mention additional skills that would help: error analysis pipelines, experiment tracking, and model explainability.
+    \item If AI tools were used, state exactly how (for editing text, debugging, or structure support) and what you verified yourself.
+    \item Reflect on what you would do differently in a second iteration.
+\end{itemize}
+
+\section{ML issues}
+\textcolor{gray}{CV\&IC: Describe which ML issues you addressed (such as class imbalance, etc.) and how you addressed them. 200 words max}
+
+\begin{itemize}
+    \item Describe class imbalance and how you addressed it with weighted sampling and weighted loss.
+    \item Mention overfitting risk and your controls: augmentation, validation monitoring, and best-epoch model selection.
+    \item Mention metric bias risk from imbalance and why weighted F1 is emphasized over plain accuracy.
+    \item Mention potential data leakage risk and how strict split strategy reduced it.
+\end{itemize}
+
+\section{Generalisation capabilities of the method}
+\textcolor{gray}{CV\&IC: Describe how you evaluate the performance of your model and its generalisation ability. 200 words max}
+
+\begin{itemize}
+    \item Explain that generalization was assessed using stratified 5-fold cross-validation and a final unseen test set.
+    \item Report both average performance and fold variability, not only a single best score.
+    \item Compare CV mean F1 with hold-out test F1 to assess stability.
+    \item Use confusion matrices and class-wise metrics to show where generalization is strong or weak.
+\end{itemize}
+
+\section{References}
+\textcolor{gray}{(Optional) Add a list of references used in your project. 1000 words max}
+
+\bibliography{ref.bib}
+
+
+https://github.com/onnx/models?tab=readme-ov-file#image_classification
+https://ieeexplore.ieee.org/document/10134069
+
+\section{Appendix}
+\textcolor{gray}{(Optional) Add appendix content to your report. 1000 words max}
+
+\end{document}
