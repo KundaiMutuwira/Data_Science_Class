@@ -30,11 +30,42 @@ The result of a high accuracy could aid the relief organizations to map a disast
 \section{(Business/Research) questions}
 \textcolor{gray}{Specify the questions that your project has answered. Use the SMART criteria. 300 words max}
 
+Our primary question that we want to be able to answer in this paper is how can we identify the most reliable transfer-learning image classifier for 12 disaster categories? Done by comparing five pre-trained models on the 7,303-image Incidents1M dataset using stratified 5-fold cross-validation and a final testing set. As a primary success metric we will use a weighted F1 score and macro F1, balanced accuracy, and recall as supporting metrics.
+
+To answer this primary question we will answer the following subquestion:
+Which of the five pre-trained models (ResNet50, VGG16, DenseNet121, MobileNetV3-Large, ViT-B/16) achieves the best cross-validated weighted F1?
+How stable is each model across folds (mean and standard deviation), and which model is most robust rather than just best on one split?
+To what extent do imbalance-aware techniques (class-weighted loss and weighted sampling) improve minority-class behavior (macro F1, balanced accuracy, recall)?
+Does the selected model’s performance on the unseen hold-out test align with cross-validation results?
+Which disaster classes are most frequently confused, and what does this imply for operational use in crisis-response decision support?
+
+% \begin{itemize}
+%     \item Main question: Can transfer learning classify 12 disaster-related image classes with reliable performance?
+%     \item Sub-question: Which metric is most informative for this imbalanced multi-class problem (weighted F1 vs accuracy)?
+%     \item Sub-question: How stable is model performance across folds?
+%     \item Sub-question: Does hold-out test performance align with cross-validation estimates?
+%     \item Write each question in SMART form: specific task, measurable metric, feasible scope, course-relevant, and deadline-bound.
+% \end{itemize}
+
+% Specific: Targeting a particular area for improvement
+% Measurable: Quantifying, or at least suggesting, an indicator of progress
+% Assignable: Defining responsibility clearly
+% Realistic: Outlining attainable results with available resources
+% Time-related: Including a timeline for expected results
+
+% Specific: Which pretrained vision model best classifies 12 disaster/accident image classes for this dataset?
+% Specific: How much does transfer learning with frozen backbones + new classifier head improve class-level recognition versus relying on a single metric?
+% Measurable: Compare models using weighted F1, macro F1, balanced accuracy, accuracy, and recall across folds.
+% Achievable: Restrict candidates to five widely used pretrained architectures and fixed training budget (epochs, batch size, optimizer, scheduler).
+% Relevant: Accurate disaster-type recognition supports faster triage, monitoring, and downstream decision support.
+% Time-bound: Complete model comparison with 5-fold CV, then retrain selected model and evaluate once on held-out test data.
+
+
 \begin{itemize}
     \item Main question: Can transfer learning classify 12 disaster-related image classes with reliable performance?
-    \item Sub-question: Which metric is most informative for this imbalanced multi-class problem (weighted F1 vs accuracy)?
     \item Sub-question: How stable is model performance across folds?
     \item Sub-question: Does hold-out test performance align with cross-validation estimates?
+    \item Sub-question: 
     \item Write each question in SMART form: specific task, measurable metric, feasible scope, course-relevant, and deadline-bound.
 \end{itemize}
 
