@@ -14,15 +14,18 @@
 Deliver at: \href{https://maat.eemcs.utwente.nl/team/239340}{maat.eemcs.utwente.nl}
 
 \section{Motivation}
-\textcolor{gray}{Describe why your project with its questions and contributions is relevant and important. If you use literature, please provide references. 300 words max}
+% \textcolor{gray}{Describe why your project with its questions and contributions is relevant and important. If you use literature, please provide references. 300 words max}
 
-\begin{itemize}
-    \item Explain why automated disaster image classification is useful for crisis response and resource allocation.
-    \item State that manual labeling is slow and error-prone when many images arrive quickly.
-    \item Mention that transfer learning reduces training cost when labeled data is limited.
-    \item Describe your contribution: a ResNet34-based pipeline with cross-validation and hold-out testing.
-    \item Briefly note expected impact: faster and more consistent situational awareness.
-\end{itemize}
+During disasters, relief organizations want to be able to help people in need as soon as possible. Information is a critical factor in aiding people in the right place at the right place. One method that can be used to assist the relief organizations is to use visual data from satellite images or posts from social media made by people on location. To actually get information from these images these need to be labelled. When this is done by people this takes a lot of time and labour. In the last years a lot of progression has been made in the field of computer vision to perform this task automatically. Now there are a lot of different models that are able to recognize images. We have chosen 5 models that are fit of doing image recognizion and in this paper we describe our method of testing different of these models on there performance on training and recognizing different types of disasters. We have done this by developing an automated 12-class disaster image classifier on a dataset of 7,303 images, where class imbalance and limited labeled data make robust modeling challenging. To keep training efficient while maintaining performance, we use transfer learning in a pipeline, then evaluated the reliability through 5-fold cross-validation and a separate testing set.
+The result of a high accuracy could aid the relief organizations to map a disaster area using images, their disaster type labels and corresponding location contained in the meta data of these images.
+
+% \begin{itemize}
+%     \item Explain why automated disaster image classification is useful for crisis response and resource allocation.
+%     \item State that manual labeling is slow and error-prone when many images arrive quickly.
+%     \item Mention that transfer learning reduces training cost when labeled data is limited.
+%     \item Describe your contribution: a ResNet34-based pipeline with cross-validation and hold-out testing.
+%     \item Briefly note expected impact: faster and more consistent situational awareness.
+% \end{itemize}
 
 \section{(Business/Research) questions}
 \textcolor{gray}{Specify the questions that your project has answered. Use the SMART criteria. 300 words max}
